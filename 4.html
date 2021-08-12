@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8 /">
+		<title>Псевдокласс</title>
+		<style>
+			p:hover{
+				border:1px dotted blue;
+			}
+			
+			a:active{
+				color:red;
+			}
+			
+			a:visited{
+				color:green;
+			}
+			
+			p::before{
+				content:"&";
+			}
+			
+			p:hover::after{
+				content:"!";
+			}
+			
+			.square{
+				width:200px;
+				height:200px;
+				margin:0 auto;
+				background:yellow;
+			}
+			
+			.square:hover{
+				border:1px solid red;
+			}
+			
+			.square:hover::before{
+				content:" ";
+				display:block;
+				width:50px;
+				height:50px;
+				background:green;
+			}
+			
+			.square:hover::after{
+				content:" ";
+				display: block;
+				width:50px;
+				height:50px;
+				background:blue;
+			}
+			
+			.parent {
+				ес
+				position:relative;
+			}
+			.child {
+				position:absolute;
+				bottom:20;
+				right:-20;
+				width:100px;
+				height:100px;
+				background:green;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Псевдокласс (псевдоселектор)</h1>
+		<p>Первый абзац</p>
+		<p>Второй абзац</p>
+		<a href="https://student.unecon.ru/">Первая ссылка</a>
+		<a href="https://www.youtube.com/">Вторая ссылка</a>
+		Основные псевдоклассы
+		<ul>
+			<li>hover - под указателем мыши
+			<li>active - активный элемент (где курсор)
+			<li>visited - посещенная ссылка
+		</ul>
+		
+		<h1>Псевдоэлементы</h1>
+		<ul>
+			<li>::before - добавление текста перед началом содержимого
+			<li>::after - добавление текста в конце
+		</ul>
+		<div class="square"></div>
+		
+		<h1>Позиционирование</h1>
+		css свойство position принимает следующие значения:
+		<ul>
+			<li>static - по умолчанию
+			<li>relative - позволяет указать относительный сдвиг, часто используется как контейнер для absolute
+			<li>absolute - абсолютное по координатам top, left, (или bottom, right)
+		</ul>
+		<div class="parent">
+			<div class="child"></div>
+		</div>
+	</body>
+</html>

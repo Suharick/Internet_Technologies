@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Блочные и строчные элементы</title>
+		<style>
+			p {
+				color:red;
+			}
+			
+			h1#css-h1 {
+				color:green;
+			}
+			
+			.important {
+				background:yellow;
+			}
+			
+			.news{
+				font-size:20px;
+			}
+			
+			p.important{
+				border:1px solid black;
+			}
+			
+			div.important{
+				padding:10px;
+				border:1px dashed blue;
+				margin:20px;
+			}
+			
+			div.negative{
+				padding:10px;
+				border:1px dashed blue;
+				margin-top:-10px;
+			}
+			
+			#css-div h2{
+				color:green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Строчные</h1>
+		<ul>
+			<li>b - Жирный шрифт (bold)
+			<li>i - Наклонный шрифт (italic)
+			<li>u - Подчеркнутый шрифт (underline)
+			<li>span - Универсальный элемент для пользовательского формата
+		</ul>
+		Примеры: <b>жирный</b>, <i class="news">курсив</i>, <b><i>жирный курсив</i></b>, обычный текст.
+		
+		<h1>Блочные</h1>
+		<ul>
+			<li>p - Абзац
+			<li>h1-h6 - Заголовки
+			<li>div - Универсальный элемент для пользовательского формата
+		</ul>
+		
+		<h2>Примеры:</h2> 
+		<p class="important news">Это абзац с классами important и news</p> 
+		<p>Это второй абзац</p> 
+		<div class="important">А это текст внутри элемента div класс important</div>
+		<div class="important">А это текст внутри элемента div класс important</div>
+		<div class="negative">А это текст внутри элемента div класс negative</div>
+		
+		<div id="css-div">
+			<h1 id="css-h1">CSS - Cascading Style Sheet</h1>
+			CSS может быть в отдельном файле обычно с расширением css, так и внутри html в теге style
+			
+			<p>Универсальные свойства HTML элементов:</p>
+			<ul>
+				<li>id - уникальный идентификатор, на странице повторяться не должен
+				<li>class - может повторяться. Может быть много классов у одного элемента. Записываются через пробел.
+			</ul>
+			
+			<h2>Некоторые CSS свойства</h2>
+			<ul>
+				<li>color - цвет шрифта, например, red
+				<li>background - цвет фона
+				<li>font-size - размер шрифта, например, 20px
+			</ul>
+			
+			<h2>CSS Selector</h2>
+			Примеры:
+			<ul>
+				<li>tag, например, "p"
+				<li>#id
+				<li>.class
+			</ul>
+		</div>
+		
+		<h2>Блочная модель</h2>
+		<h3>Свойства CSS: padding, margin, border.</h3>
+		
+		Разница padding и margin:
+		<ul>
+			<li>padding внутри рамки border, margin - вне;
+			<li>padding имеет цвет фона, margin всегда прозрачный;
+			<li>вертикальные margin у соседних элементов перекрываются (схлопываются);
+			<li>также схлопываются margin у родителя и детеныша;
+			<li>margin допустим отрицательным, padding не допустим быть отрицательным.
+		</ul>
+		
+		Запись свойств padding и margin:
+		<ul>
+			<li>1 число, например, 20px (одинаковые со всех сторон)
+			<li>2 числа, например, 20px 10px (первое - верхняя и нижняя, второе - левая и правая)
+			<li>4 числа, например, 20px 10px 5px 1px (top, right, bottom, left)
+		</ul>
+	</body>
+</html>

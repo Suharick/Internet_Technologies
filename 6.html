@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Градиент и закругленные углы</title>
+		<style>
+			.battery{
+				width:500px;
+				height:200px;
+				border:3px solid black;
+				margin:20px;
+				position:relative;
+				border-radius:0 10px 10px 0;
+			}
+			
+			.battery::after{
+				content:" ";
+				position:absolute;
+				right:-20px;
+				top:50px;
+				width:20px;
+				height:100px;
+				background:black;
+			}	
+			
+			.battery::before{
+				display:block;
+				height:100%;
+				content:" ";
+			}
+			
+			.battery.low::before{
+				width:30%;
+				background:linear-gradient(0deg, #ad0909, #f70c0c);
+			}
+			
+			.battery.low:hover::before{
+				width:50%;
+				background:linear-gradient(to right, #d5d907, #edf05b);
+				transition:all 2s;
+			}
+			
+			.battery.medium::before{
+				width:50%;
+				background:linear-gradient(to right, #d5d907, #edf05b);
+			}
+			
+			.battery.medium:hover::before{
+				width:100%;
+				background:green;background:linear-gradient(to right, #139e18, #07f50f);
+				transition:all 2s;
+			}
+			
+			.battery.high::before{
+				width:100%;
+				background:linear-gradient(to right, #139e18, #07f50f);
+			}
+			
+			.battery.high:hover::before{
+				width:30%;
+				background:linear-gradient(to right, #ad0909, #f70c0c);
+				transition:all 2s;
+			}
+			
+			
+			.battery.medium{
+				background:linear-gradient(to right, yellow 0 50%, white 50% 100%);
+			}
+			
+			
+			.circle{
+				background:green;
+				width:100px;
+				height:100px;
+				border-radius:50%;
+				transition:all 2s;
+			}
+			
+			.circle:hover{
+				width:200px;
+				height:200px;
+			}
+			
+			#rect1 , #rect2{
+				width:400px;
+				height:200px;
+				background:yellow;
+				margin-bottom:30px;
+			}
+			
+			.one , .two{
+				background:red;
+				border:5px solid gray;
+			}
+			
+			.two{
+				position:relative;
+				top:-100%;
+				left:50%;
+				background:blue;			
+			}
+			
+			#rect1 .one , #rect1 .two{
+				width:calc(50% - 2*5px); /*половина ширины родителя - 2 ширины border*/
+				height:calc(100% - 2*5px); /*высота родителя - 2 высоты border*/
+			}
+			
+			#rect2 .one , #rect2 .two{
+				width:50%;
+				height:100%;
+				box-sizing:border-box;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<h1>Градиентная заливка</h1>
+		background:linear-gradient(to right, yellow 0 50%, white 50% 100%);
+		<div class="battery low"></div>
+		<div class="battery medium"></div>
+		<div class="battery high"></div>
+		
+		<h1>Закругленные углы</h1>
+		border-radius: px (или %);
+		<div class="circle"></div>
+		
+		<h1>Свойство box-sizing</h1>
+		<p>По умолчанию свойства css width и height задают ширину и высоту содержимого элемента content без учета padding и border.</p>
+		<p>Поведение можно поменять, задав свойство в значении box-sizing:border-box;</p>
+		<p>В этом случае width и height указывают размеры с учетом padding и border</p>
+		
+		<h1>Вычисляемые свойства, функция calc</h1>
+		<p>Сочетание разных единиц измерения</p>		
+		<div id="rect1">
+			<div class="one"></div>
+			<div class="two"></div>
+		</div>
+		<div id="rect2">
+			<div class="one"></div>
+			<div class="two"></div>
+		</div>
+	</body>
+</html>

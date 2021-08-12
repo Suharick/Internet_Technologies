@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://vk.com/away.php?utf=1&to=https%3A%2F%2Fcode.jquery.com%2Fjquery-3.6.0.min.js"></script>
+		<style>
+			.container {
+				display:flex;
+			}
+			
+			.elm {
+				width:100px;
+				height:200px;
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	
+	<script>
+		function setHTML() {
+			var html = document.querySelector('input[name="html"]').value;
+			//var html = $('input[name="html"]').val();
+			
+			alert(html);
+			
+			var elms = document.querySelectorAll('.elm');
+			for (var i=0; i<elms.length; i++) {
+				elms[i].innerHTML = html;
+			}
+			//$('.elm').html(html);
+			$('.elm').css('background','red');
+		}
+	</script>
+		
+	<body>
+		<div class="container">
+			<div class="elm"></div>
+			<div class="elm"></div>
+			<div class="elm"></div>
+			<div class="elm"></div>
+		</div>
+		
+		<label>HTML:
+			<input type="text" name="html">
+		</label>
+		
+		<button onclick="setHTML()">HTML</button>
+	</body>
+</html>

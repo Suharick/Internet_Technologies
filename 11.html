@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Рассчет % ставки</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
+		<style>
+			label {
+				min-width:150px;
+				display:inline-block;
+			}
+			
+			.form-row {
+				margin:15px 0;
+			}
+		</style>
+	</head>
+	
+	<script>
+		function newton(fn, x0=0.000001) {
+			var eps = 0.000001;
+			var i = 0;
+			var x = x0;
+			var dx = 0.0000001;
+			while(Math.abs(fn(x)) > eps) {
+				var dfx = (fn(x+dx)-fn(x))/dx;
+				x = x - fn(x)/dfx;
+				i++;
+				console.log(i,x,fn(x));
+				if(i>1000) {
+					alert("Не могу найти решение!");
+					break;
+				}
+			}
+			return x;
+		}
+	
+		function calc() {
+			var A = +document.querySelector("[name='sum']").value;
+			var R = +document.querySelector("[name='pay']").value;
+			var n = 12*document.querySelector("[name='period']").value;
+			console.log(A, R, n);
+			var i = newton(function(x) {
+				return R*(1-(1+x)**-n)/x - A;
+			});
+			i = i*12*100; //12 для перевода в годовую, 100 для перевода в %
+			i = i.toFixed(2); //округляем до 2 знаков после запятой
+			document.querySelector("[name='stavka']").value=i;
+			fillTable(A, R, i, n);
+		}
+		
+		function fillTable(A, R, i, n) {
+			var table = document.querySelector("table.payment");
+			for (var k=0; k<n; k++) {
+				var row=table.insertRow();
+				var cell=row.insertCell();
+				cell.innerHTML = k+1;
+				cell=row.insertCell();
+				cell.innerHTML=A.toFixed(2);
+				cell=row.insertCell();
+				cell.innerHTML=(A*i/12/100).toFixed(2);
+				cell=row.insertCell();
+				cell.innerHTML=R;
+				A=A+A*i/12/100-R;
+				cell=row.insertCell();
+				cell.innerHTML=A.toFixed(2);
+			}
+		}
+	</script>
+	<body>
+		<div>
+			<div class="form-row">
+				<label for="sum">Сумма кредита</label>
+				<input id="sum" name="sum" type="text" value="100000"/>
+			</div>
+			
+			<div class="form-row">
+				<label for="period">Срок кредита</label>
+				<input id="period" name="period" type="text" value="10"/>
+			</div>
+			
+			<div class="form-row">
+				<label for="pay">Размер платежа</label>
+				<input id="pay" name="pay" type="text" value="1000"/>
+			</div>
+			
+			<button onclick="calc()">Расчитать % ставку</button>
+			
+			<input name="stavka" type="text" disabled="true"/>
+		</div>
+		
+		<table class="payment">
+			<tr><td>N</td><td>Долг</td><td>%</td><td>Платеж</td><td>Остаток</td></tr>
+		</table>
+		
+		<canvas id="canva"></canvas>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Позиционирование</title>
+		<style>
+			li:first-child{
+				color:red;
+			}
+			
+			li:last-child{
+				color:blue;
+			}
+			
+			li:nth-child(even){
+				background:green;
+			}
+			
+			li:nth-child(2n+1){
+				background:#E0E0E0;
+			}
+			
+			.parent *{
+				height:20px;
+				border:1px solid blue;
+			}
+			
+			.parent p:first-child{  
+				background:yellow;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<h1>position:fixed</h1>
+		Аналогично absolute. Позволяет спозиционировать элемент так, чтобы он всегда был на экране.
+		
+		<h1>Псевдоселекторы :first-child :last-chald :nth-child</h1>
+		
+		<p>:first-child - элемент, являющийся первым потомком от своего родителя</p>
+		<p>Синтаксис li:first-child применит правило к элементу с типом li, который является первым потомком своего родителя</p>
+		<p><b>ВАЖНО!!! Не к потомку элемента li</b></p>
+		<p>li:nth-child(expr), где expr может принимать значения even (четные) или odd (нечетные) или An+B, где А и В целые числа</p>
+		<p>li:nth-child(even) все равно, что li:nth-child(2n); li:nth-child(odd) все равно, что li:nth-child(2n+1)</p>
+		
+		<ul>
+			<li>Первый
+			<li>Второй
+			<li>Третий
+			<li>Четвертый
+			<li>Пятый
+			<li>Шестой
+			<li>Седьмой
+			<li>Восьмой
+			<li>Девятый
+		</ul>
+		
+		<p>Чтобы расскрасить 3 первых элемента по своему выбору, можно написать 3n; 3n+1; 3n+2</p>
+		li:nth-child(3n){
+			background:#6963ff;
+		}
+			
+		li:nth-child(3n+1){
+			background:#817ee0;
+		}
+			
+		li:nth-child(3n+2){
+			background:#a09ed9;
+		}
+		
+		<div class="parent">
+			<p>1</p>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		
+		<h1>flex Контейнеры (свойство display:flex)</h1>
+		Преобразование текста в колонки <b>(файл Flexbox 0)</b>
+		<p>Элемент с display:flex; называется flex-container;</p>
+		<p>Дочерние flex-items;</p>
+		<p>Говорят про 2 оси flex-container; Основная main и Перпендикулярная cross</p>
+		<p>По умолчанию основная по горизонтали слева направо (для языка ltr)</p>
+		<p>cross - сверху вниз</p>
+		<p>
+			Направление основной оси задает свойство flex-direction (по умолчанию row); 
+			Доступные значения: row, column, row-reverse, column-reverse;
+		</p>
+		<p></p>
+	</body>
+</html>

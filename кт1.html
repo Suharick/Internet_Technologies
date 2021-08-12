@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Новоселова Наталья</title>
+		<style>
+			.main {
+				width:700px;
+				height:600px;
+				margin:0 auto;
+				padding-left:30px;
+				padding-right:30px;
+				padding-bottom:20px;
+				padding-top:20px;
+				background-color:#7db6ff;
+				cursor:pointer;
+			}
+			
+			.main .square , .circle {
+				width:50px;
+				height:50px;
+				background-color:#ff48;
+				border:3px solid gray;
+			}
+			
+			.main .circle {
+				border-radius:50%;
+				position:relative;
+				left:650px;
+				top:-50px;
+			}
+			
+			.main .circle:hover {
+				width:80px;
+				height:80px;
+				transition:all 1s;
+				left:625px;
+			}
+			
+			.main .square:hover {
+				background-color:#ffa429;
+				transition:all 1s;
+			}
+		</style>
+	</head>
+	
+	<script>
+		function changeClass() {
+			var el = event.target;
+			if (el.classList.contains('square')) {
+				el.classList.remove('square');
+				el.classList.add('circle');
+			} else if (el.classList.contains('circle')) {
+				el.classList.remove('circle');
+				el.classList.add('square');
+			}
+		}
+		
+		function addCircle() {
+				var main = document.querySelector('.main');
+				var el = document.createElement("div");
+				el.classList.add('circle');
+				main.appendChild(el);
+			}
+	</script>
+	
+	<body>
+		<h1>КТ1 Новоселова Наталья</h1>
+		
+		<div class="main">
+			<div class="square" onclick="changeClass()"></div>
+			<div class="circle" onclick="changeClass()"></div>
+		</div>
+		
+		<button onclick="addCircle()">Добавить</button>
+	</body>
+</html>

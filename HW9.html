@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	
+	<script>
+		function block() {
+			//var block=document.querySelector("#block");
+			document.addEventListener('click',function(ev) {
+				if (ev.target.tagName == 'A') {
+					ev.preventDefault();
+				}
+			});
+		}
+		
+		function allow() {
+			//var allow=document.querySelector("#allow");
+			document.addEventListener('click',function(ev) {
+				ev.stopPropagation();
+			}, true);
+		}
+	</script>
+		
+	<body>
+		<p><a href="https://spblib.ru">Библиотеки Санкт-Перетбурга</a></p>
+		<p><a href="https://fontawesome.com">Иконки</a></p>
+		
+		<div>
+		<button id="block" onclick="block()">Запретить</button>
+		<button id="allow" onclick="allow()">Разрешить</button>
+		</div>
+	</body>
+</html>

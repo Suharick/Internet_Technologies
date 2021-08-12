@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8 /">
+		<title>Приоритет</title>
+		<style>
+			#wrap .second{			/*110*/
+				background:green;
+			}
+			
+			.square:hover{			/*022*/
+				background:red;
+				transition:all 2s;
+			}
+			
+			.square{
+				width:300px;
+				height:50px;
+				border:1px solid black;
+				margin:30px auto;
+				background:yellow;
+			}
+			
+			.second{
+				position:relative;
+				top:50px;
+				left:-50px;
+			}
+				
+		</style>
+	</head>
+	
+	<body>
+		<div id="wrap">
+			<div class="square first">1</div>
+			<div class="square second" style="background:blue;">2</div>
+			<div class="square third">3</div>
+		</div>
+		
+		<h1>CSS специфичность (приоритеты правил)</h1>
+		
+		Подсчитывается три типа параметров:
+		<ul>
+			<li>A - #id
+			<li>B - классы и псевдоклассы
+			<li>C - теги элементов, например, div или ::before
+		</ul>
+		
+		<p>Записывается десятичное число из цифр ABC.</p>
+		<p>Формально число не в 10-тичной системе, а в системе с достатосно большим основанием AN^3 + BN^2 + CN, где N достаточно велико.</p>
+		<p>Чем число больше, тем правило специфичней (приоритетней).</p>
+		
+		<p>Дополнительно перекрытие !important (не рекомендуется к использованию, так как перекрываются все css правила). Имеет наивысшую приоритетность.</p>
+		
+		<p>Свойства, указанные в html через style элемента важнее других правил css (но не приоритетней !important) и тоже не рекомендуется для использования</p>
+		
+		<h1>Плавные переходы CSS-3</h1>
+		Свойство transition; transition:all 2s;
+	</body>
+</html>

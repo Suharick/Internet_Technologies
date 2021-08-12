@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Интересный факт</title>
+		<style>
+			.info{
+				border:3px solid black;
+				width:400px;
+				height:250px;
+				left:-410px;
+				top:35%;
+				position:fixed;
+				text-align:center;
+			}
+		
+			.info img{
+				width:250px;
+				height:250px;
+				float:left;
+				position:relative;
+			}
+			
+			.info:hover{
+				left:0;
+				transition:all 2s;
+			}
+			
+			.info .fact{
+				border:3px solid #ff9e01;
+				width:25px;
+				height:100%;
+				
+				top:-3px;
+				left:400px;
+			
+				text-align:center;
+
+				background:#ff9e01;
+				writing-mode:vertical-rl;
+				border-radius:0 20px 20px 0;
+				position:absolute;
+			}
+		</style>
+	</head>
+		
+	<body>	
+		<div class="info">
+			<img src="file.jpg">
+			
+			Корги - это пастушья версия овчарки на коротких лапках :)
+			
+			<div class="fact"><b>Хотите узнать интересный факт?</b></div>
+		</div>
+	</body>
+</html>

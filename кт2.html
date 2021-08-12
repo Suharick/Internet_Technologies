@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Новоселова Наталья КТ2</title>
+		<style>	
+			.parent {
+				border:2px solid blue;
+				margin:40px;
+				display:flex;
+				flex-direction:row;
+			}
+			
+			.parent .card {
+				width:100px;
+				height:250px;
+				margin:20px;
+				border:1px solid black;
+				cursor:pointer;
+				position:relative;
+			}
+			
+			.card.selected {
+				background:orange;
+			}
+			
+			.parent:hover .card::after {
+				content:" ";
+				position:absolute;
+				background:green;
+				width:20px;
+				height:20px;
+				border-radius:50%;
+				transition:all 2s;
+			}
+
+			.parent:hover .card:last-child:after{
+				content:" ";
+				position:absolute;
+				bottom:0;
+				right:0;
+				width: 30px;
+				height:30px;
+				background:red;
+				border:1px solid black;
+				border-radius:50%;
+				transition:all 5s;
+			}
+			
+			.parent:hover .card:first-child:after{
+				content:" ";
+				position:absolute;
+				bottom:0;
+				right:0;
+				width: 30px;
+				height:30px;
+				background:red;
+				border:1px solid black;
+				border-radius:50%;
+				transition:all 5s;
+			}
+		</style>
+	</head>
+	
+	<script>
+		window.onload = onLoad;
+		function onLoad() {
+			var ev = document.querySelector('.parent');
+			ev.addEventListener('click', function(event) {
+				var el = event.target;
+				// Проверим что щелчок на элементе card
+				if (el.classList.contains('card')) {
+					el.classList.toggle('selected');
+				}
+			});
+		}
+		
+		function addCard() {
+			var ev = document.querySelector('.parent');
+			var el = document.createElement("div");
+			el.classList.add('card');
+			ev.appendChild(el);
+		}
+		
+		function delCard() {
+			var els = document.querySelectorAll('.parent .card');
+				for (var i=0; i<els.length; i++) {
+					var el = els[i];
+					if (el.classList.contains('selected')) {
+						el.remove();
+					}
+				}
+		}
+	</script>
+		
+	<body>    
+        <div class="parent">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <button id="add" onclick="addCard()">Добавить</button>
+        <button id="remove" onclick="delCard()">Удалить</button>
+        <button id="change">Изменить</button>
+    </body>
+</html>

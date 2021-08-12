@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Battery</title>
+		<style>
+			.battery{
+				width:500px;
+				height:200px;
+				border:3px solid black;
+				margin:20px;
+				position:relative;
+			}
+			
+			.battery::after{
+				content:" ";
+				position:absolute;
+				right:-20px;
+				top:50px;
+				width:20px;
+				height:100px;
+				background:black;
+			}	
+			
+			.battery::before{
+				display:block;
+				height:100%;
+				content:" ";
+			}
+			
+			.battery.low::before{
+				width:30%;
+				background:red;
+			}
+			
+			.battery.medium::before{
+				width:50%;
+				background:yellow;
+			}
+			
+			.battery.high::before{
+				width:100%;
+				background:green;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div class="battery low"></div>
+		<div class="battery medium"></div>
+		<div class="battery high"></div>
+	</body>
+</html>

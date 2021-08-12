@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Кнопки</title>
+		<style>
+			.flex {
+				display:flex;
+				width:80%;
+				margin:0 auto;
+				height:300px;
+				border:1px solid blue;
+			}
+			
+			.card {
+				width:50px;
+				height:100px;
+				margin:10px;
+				border:1px solid black;
+				text-align:center;
+				font-size:24px;
+				line-height:100px;
+				cursor:pointer;
+			}
+			
+			.card.selected{
+				background:orange;
+				color:white;
+			}
+			
+			.right {
+				justify-content:flex-end;
+			}
+			
+			ul.settings li{
+				cursor=pointer;
+			}
+			
+			li.active {
+				color=blue;
+			}
+		</style>
+		
+		<script>
+			window.onload=onLoad;
+		
+			function onLoad() {
+				var flex=document.querySelector('.flex');
+				var timer;
+				
+				flex.addEventListener('click', //switchSelected2() 
+					function(event) {
+						var el=event.target;
+						if (el.classList.contains('card')) {
+							if (event.detail == 1) {
+								timer=setTimeout(function() {
+									el.classList.toggle('selected');
+								},300);
+							} else if (event.detail == 2) {
+								clearTimeout(timer);
+								el.parentNode.appendChild(el);
+							}
+						}	
+				});
+				var ul=document.querySelector('ul.settings');
+				ul.addEventListener('click', function(event) {
+					var el=event.target;
+					//проверим, что этот li 2-ого уровня
+					if (el.parentNode.parentNode.parentNode == ul) {
+						var els=el.parentNode.querySelectorAll('.active');
+						
+						el.classList.add('active');
+						var val=el.innerHTML;
+						var parentLi=el.parentNode.parentNode;
+						var span=parentLi.
+						var prop=el.parentNode.parentNode;
+						console.log(prop, val);
+					}
+				});
+			}
+			
+			function switchSelected2() {
+				this.classList.toggle('selected');
+			}
+		
+			function switchSelected(el) {
+							
+				if(el.classList.contains('selected')) {
+					el.classList.remove('selected');
+				}
+				else {
+					el.classList.add('selected');
+				}
+			}
+		
+			function test() {
+				alert("Привет!"); /*alert - вывод сообщения на экран*/
+				//document.querySelector(".card")
+				var el=document.querySelector(".flex");
+				console.log(el);
+				console.log(el.innerHTML);
+				
+				//el.innerHTML="some text";
+				//el.innerHTML='<div class="card">1</div>';
+				
+				el.style="background:#FFFACD;";	
+				
+				//Работа с классами
+				//el.className="flex right"; //текстовая строка
+				el.classList.add('right');	
+				
+				//Дерево HTML - посмотреть родитетелей
+				var parent=el.parentNode.parentNode.parentNode;
+				console.log(parent);
+
+				var children=el.childNodes;
+				for (var i=0; i<children.length; i++) {
+					children[i].style="background:#E6E6FA;";	
+				}
+
+				//обход всех родитетельских объектов (обход дерева вверх)
+				while (el) {
+					console.log(el);
+					el=el.parentNode;	
+				}
+			}
+				
+			function addCard() {
+				var flex=document.querySelector('.flex');
+				var el=document.createElement("div");
+				el.innerHTML=flex.children.length+1;
+				el.classList.add('card');
+				el.addEventListener('click', switchSelected2)
+				flex.appendChild(el);
+			}
+			
+			function removeCards() {
+				var els=document.querySelectorAll('.flex .card');
+				for (var i=0; i<els.length; i++) {
+					var el=els[i];
+					if (el.classList.contains('selected')) {
+						el.remove();
+						//для совместимости со старым браузером
+						//el.parentNode.removeChild(el);
+					}
+				}	
+			}
+		</script>
+	</head>
+		
+	<body>
+		<button onclick="test()">Кнопка</button>
+		<button onclick="addCard()">Добавить</button>
+		<button onclick="removeCards()">Удалить выбранные</button>
+		
+		//внутрь div перед классом написать onclick="switchSelectes(this)"
+		<div class="flex">
+			<div class="card selected">1</div>
+			<div class="card">2</div>
+			<div class="card">3</div>
+			<div class="card">4</div>
+		</div>
+		
+		<ul class="settings">
+			<li><span>flex-direction</span>
+				<ul>
+					<li>row
+					<li>column
+					<li>row-reversed
+					<li>column-reversed
+				</ul>
+			</li>
+			
+			<li><span>justify-content</span>
+				<ul>
+					<li>start
+					<li>center
+					<li>space-between
+					<li>space-around
+				</ul>
+			</li>
+			
+			<li><span>align-items</span>
+				<ul>
+					<li>flex-start
+					<li>flex-end
+					<li>center
+					<li>space
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>

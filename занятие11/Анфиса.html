@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8"/>
+		<link href="css/all.css" rel="stylesheet">
+		<title></title>
+		<style>
+			.flex {
+				display:flex;
+				width:80%;
+				margin:0 auto;
+				height:300px;
+				border:1px solid blue;
+			}
+			.right {
+				justify-content:flex-end;
+			}
+
+			.card {
+				width:50px;
+				height:100px;
+				margin:10px;
+				border:1px solid black;
+				font-size:24px;
+				text-align:center;
+				line-height:100px;
+				cursor:pointer;
+			}
+
+			.card.selected {
+				background:orange;
+				color:white;
+			}
+
+			.settings-wrap{
+				width:50%;
+				margin: 0 auto;
+				border: 1px solid black;
+				display: none;
+				position: absolute;
+				background: white;
+				top:15%;
+				left:25%;
+			}
+
+			.settings-wrap .title{
+				background-color: blue;
+				color: white;
+				padding: 2px;
+			}
+			ul.settings li {
+				cursor:pointer;
+			}
+			li.active {
+				color:blue;
+			}
+
+			ul.settings li.collapsed ul {
+				display: none;
+			}
+
+
+
+
+		</style>
+		<script>
+			window.onload = onLoad;
+			//onLoad();
+			function onLoad() {
+				var flex = document.querySelector('.flex');
+				console.log("onload");
+				var timer;
+				flex.addEventListener('click', function(event) {
+					var el = event.target;
+					// Проверим что щелчок на элементе card
+					if (el.classList.contains('card')) {
+						// event.detail - число щелчков мыши
+						if (event.detail == 1) {
+							timer = setTimeout(function() {
+								el.classList.toggle('selected');
+							}, 300);
+						} else if (event.detail == 2) {
+							clearTimeout(timer);
+							el.parentNode.appendChild(el);
+						}
+					}
+				});
+				var ul = document.querySelector('ul.settings');
+				ul.addEventListener('click', function(event) {
+					var el = event.target;
+					// проверим что это li 2-го уровня
+					if (el.parentNode.parentNode.parentNode == ul) {
+						// Предыдущий выбранный элемент в этой ветки
+						var prevActive = el.parentNode.querySelector('.active');
+						if (prevActive) {
+							prevActive.classList.remove('active');
+						}
+						el.classList.add('active');
+						var val = el.innerHTML;
+						var parentLi = el.parentNode.parentNode;
+						var span = parentLi.querySelector('span');
+						var prop = span.innerHTML;
+						flex.style[prop] = val;
+					}
+				});
+			}
+
+
+
+			function test() {
+				var el = document.querySelector(".flex");
+				console.log(el);
+				// Св-во style
+				el.style = "background:yellow;";
+				// Св-во innerHTML
+				console.log(el.innerHTML);
+				//el.innerHTML = '<div class="card">1</div>';
+				// className - текстовая строка не используют
+				// el.className = "flex right";
+
+				// classList методы add remove toggle contains
+				el.classList.add('right');
+
+				var children = el.childNodes;
+				for (var i=0; i<children.length; i++) {
+					//children[i].style = "background:red;";
+				}
+
+				// Обход дерева вверх
+				/*
+				while (el) {
+					console.log(el);
+					el = el.parentNode;
+				}
+				*/
+			}
+
+			function showSettings(){
+				var div = document.querySelector('.settings-wrap');
+				console.log('Run');
+				if (div.style.display == 'block') {
+					div.style.display = 'none';
+				} else {
+					div.style.display = 'block';
+				}
+			}
+
+
+
+			function addCard() {
+				var flex = document.querySelector('.flex');
+				var el = document.createElement("div");
+				el.innerHTML = flex.children.length + 1;
+				el.classList.add('card');
+				flex.appendChild(el);
+			}
+
+			function removeCards() {
+				var els = document.querySelectorAll('.flex .card');
+				for (var i=0; i<els.length; i++) {
+					var el = els[i];
+					if (el.classList.contains('selected')) {
+						el.remove();
+					}
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+	<button onclick="test()">Кнопка</button>
+	<button onclick="addCard()"> <i class="far fa-plus-square"></i> Добавить</button>
+	<button onclick="removeCards()"> <i class="far fa-trash-alt"></i> Удалить выбранные</button>
+	<button onclick="showSettings()"> <i class="fas fa-cog"></i> Настройки </button>
+
+
+	<div class="flex">
+		<div class="card selected">1</div>
+		<div class="card">2</div>
+		<div class="card">3</div>
+		<div class="card">4</div>
+	</div>
+
+	<div class="settings-wrap">
+		<div class="title"> Настройки </div>
+
+		<ul class="settings">
+			<li><span>flex-direction</span>
+				<ul>
+					<li>row
+					<li>column
+					<li>row-reverse
+					<li>column-reverse
+				</ul>
+			</li>
+			<li><span>justify-content</span>
+				<ul>
+					<li>start
+					<li>center
+					<li>space-between
+					<li>space-around
+					<li>space-evenly
+				</ul>
+			</li>
+			<li><span>align-items</span>
+				<ul>
+					<li>flex-start
+					<li>flex-end
+					<li>center
+					<li>stretch
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</body>
+</html>
